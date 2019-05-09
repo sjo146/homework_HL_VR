@@ -71,7 +71,7 @@ public class StartActivity extends Activity {
                     System.out.println("post方法取回内容：" + resultData);
                     JSONArray data = new JSONArray(resultData);
                     System.out.println(data.length());
-                    for (int i = 0; i < data.length() - 1; i++) {
+                    for (int i = 0; i < data.length() ; i++) {
                         JSONObject j = data.getJSONObject(i);
                         System.out.println(j.getString("imgTitle"));
                         imgMsgs.add(
