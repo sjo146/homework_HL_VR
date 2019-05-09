@@ -32,8 +32,9 @@
             android:background="?actionBarItemBackground"
             android:padding="6dp"
             android:src="@mipmap/ic_mine"/>
-    </RelativeLayout>
 
+
+    </RelativeLayout>
     <android.support.percent.PercentRelativeLayout
         android:id="@+id/prl_image"
         android:layout_width="match_parent"

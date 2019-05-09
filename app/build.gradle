@@ -65,4 +65,7 @@ dependencies {
     api 'com.sunfusheng:FirUpdater:1.0.7'
     api 'com.google.vr:sdk-panowidget:1.80.0'
     api 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.28'
+    api 'commons-codec:commons-codec:1.10' 
+    
+  
 }
