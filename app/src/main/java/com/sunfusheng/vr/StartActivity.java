@@ -27,6 +27,7 @@ public class StartActivity extends Activity {
     private ImageView imageView;
     private String urlString;
     private URL url;
+    private boolean isGet=false;
     public static ArrayList<ImgMsg> imgMsgs;
 
 
@@ -34,10 +35,11 @@ public class StartActivity extends Activity {
         public void handleMessage(android.os.Message msg) {
             if (msg.arg1 == 1) {
                 Log.println(Log.WARN,"msg","成功得到图片信息");
-
+                Toast.makeText(StartActivity.this,"加载图片完成",Toast.LENGTH_LONG).show();
+                isGet=true;
             }
             if(msg.arg2==2){
-                Toast.makeText(StartActivity.this,"网络繁忙！稍后再试",Toast.LENGTH_LONG);
+                Toast.makeText(StartActivity.this,"网络繁忙！稍后再试",Toast.LENGTH_LONG).show();
             }
         }
 
@@ -58,7 +60,7 @@ public class StartActivity extends Activity {
 
             @Override
             public void onClick(View v) {
-                if(imgMsgs.size()>0){
+                if(isGet==true){
                 Intent intent=new Intent(StartActivity.this,MainActivity.class);
                 startActivity(intent);}
                 else{
@@ -78,12 +80,10 @@ public class StartActivity extends Activity {
             public void run() {
                 try {
                     String resultData = JsonUtil.getJsonString(urlString);
-                    System.out.println("post方法取回内容：" + resultData);
                     JSONArray data = new JSONArray(resultData);
-                    System.out.println(data.length());
+                    int line=data.length();
                     for (int i = 0; i < data.length() ; i++) {
                         JSONObject j = data.getJSONObject(i);
-                        System.out.println(j.getString("imgTitle"));
                         imgMsgs.add(
                                 new ImgMsg(j.getInt("imgType"),
                                         j.getString("imgTitle"),

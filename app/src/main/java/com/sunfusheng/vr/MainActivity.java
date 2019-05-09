@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.google.vr.sdk.widgets.pano.VrPanoramaView;
@@ -29,9 +30,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
         initView();
+        initListener();
     }
 
     private void initView() {
@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
 
         loadImgMsg(imgMsg);
 
-        initListener();
+
         recyclerView = findViewById(R.id.recyclerView);
         recycleAdapter = new RecycleAdapter(StartActivity.imgMsgs, this);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -62,7 +62,15 @@ public class MainActivity extends AppCompatActivity {
         ivMine.setOnClickListener(v -> {
             startActivity(new Intent(this, AboutActivity.class));
         });
-
+        recycleAdapter.setOnItemClickListener(new RecycleAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                if (currPosition == position) return;
+                currPosition = position;
+               ImgMsg imgMsg=StartActivity.imgMsgs.get(currPosition);
+                loadImgMsg(imgMsg);
+            }
+        });
 
     }
 

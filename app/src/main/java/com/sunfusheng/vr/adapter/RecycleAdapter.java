@@ -15,7 +15,7 @@ import java.util.ArrayList;
 public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.ViewHolder> {
     private ArrayList<ImgMsg> imgMsgs;
     private Context context;
-
+    public OnItemClickListener itemClickListener;
 
     public RecycleAdapter(ArrayList<ImgMsg> imgMsgs, Context context) {
         this.imgMsgs = imgMsgs;
@@ -34,6 +34,17 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.ViewHold
 
         }
     }
+
+
+    public interface  OnItemClickListener{
+        void onItemClick(View view,int position);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener itemClickListener) {
+        this.itemClickListener = itemClickListener;
+    }
+
+
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         return new ViewHolder(LayoutInflater.from(context).inflate(R.layout.item_panorana_image,null));
@@ -45,12 +56,36 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.ViewHold
         holder.imageView.setImageBitmap(imgMsg.assetName);
         holder.tv_title.setText(imgMsg.title);
         holder.tv_desc.setText(imgMsg.desc);
+        holder.imageView.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                if (itemClickListener != null)
+                    itemClickListener.onItemClick(v,position);
+            }
+        });
+        holder.tv_title.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                if (itemClickListener != null)
+                    itemClickListener.onItemClick(v,position);
+            }
+        });
+        holder.tv_desc.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                if (itemClickListener != null)
+                    itemClickListener.onItemClick(v,position);
+            }
+        });
+
     }
 
     @Override
     public int getItemCount() {
         return imgMsgs!=null?imgMsgs.size():0;
     }
+
+
 
 
 

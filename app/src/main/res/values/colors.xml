@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <color name="colorPrimary">#C34A42</color>
-    <color name="colorPrimaryDark">#C34A42</color>
-    <color name="colorAccent">#C34A42</color>
+    <color name="colorPrimary">#7171C6</color>
+    <color name="colorPrimaryDark">#7171C6</color>
+    <color name="colorAccent">#7171C6</color>
 
     <!-- common -->
     <color name="c0">#ff000000</color>
@@ -11,7 +11,7 @@
     <color name="c2">#8C000000</color>
     <color name="c3">#66000000</color>
     <color name="c4">#1A000000</color>
-    <color name="c5">#C34A42</color>
+    <color name="c5">#7171C6</color>
     <color name="c6">#FF9800</color>
     <color name="c7">#009734</color>
     <color name="c8">#46AE36</color>
