@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 import com.sunfusheng.vr.Base64Util.Base64Object;
 import com.sunfusheng.vr.model.ImgMsg;
 import com.sunfusheng.vr.transport.JsonUtil;
@@ -35,6 +36,9 @@ public class StartActivity extends Activity {
                 Log.println(Log.WARN,"msg","成功得到图片信息");
 
             }
+            if(msg.arg2==2){
+                Toast.makeText(StartActivity.this,"网络繁忙！稍后再试",Toast.LENGTH_LONG);
+            }
         }
 
         ;
@@ -54,8 +58,14 @@ public class StartActivity extends Activity {
 
             @Override
             public void onClick(View v) {
+                if(imgMsgs.size()>0){
                 Intent intent=new Intent(StartActivity.this,MainActivity.class);
-                startActivity(intent);
+                startActivity(intent);}
+                else{
+                    Message message = handler.obtainMessage();
+                    message.arg2= 2;
+                    handler.sendMessage(message);
+                }
             }
         });
     }
