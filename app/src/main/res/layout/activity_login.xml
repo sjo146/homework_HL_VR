@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+        xmlns:app="http://schemas.android.com/apk/res-auto" android:background="#fff"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" xmlns:android="http://schemas.android.com/apk/res/android"
+        android:gravity="center">
+    <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="90dp" app:srcCompat="@drawable/earth" android:id="@+id/earth"/>
+    <RelativeLayout
+android:layout_margin="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
+    >
+
+        <TextView
+                android:layout_marginLeft="5dp"
+                android:textSize="30dp"
+                android:text="@string/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:id="@+id/title"/>
+        <View
+                android:id="@+id/divider"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentLeft="true"
+                android:layout_below="@id/title"
+                android:background="?android:attr/listDivider"/>
+        <RelativeLayout
+
+                android:id="@+id/edit"
+                android:layout_margin="40dp"
+                android:layout_width="match_parent"
+                android:layout_height="150dp">
+
+            <EditText
+                    android:layout_marginTop="20dp"
+                    android:layout_below="@id/name_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName"
+                    android:text="Name"
+                    android:ems="10"
+                    android:id="@+id/pwd_text"/>
+            <EditText
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName"
+                    android:text="Name"
+                    android:ems="10"
+                    android:id="@+id/name_text"/>
+
+        </RelativeLayout>
+        <RelativeLayout
+                android:layout_below="@id/edit"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="50dp">
+
+            <Button
+                    android:text="Button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/login_btn"/>
+            <Button
+                    android:layout_toRightOf="@id/login_btn"
+                    android:text="Button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/register_btn"/>
+        </RelativeLayout>
+
+    </RelativeLayout>
+</LinearLayout>

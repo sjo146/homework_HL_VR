@@ -2,8 +2,8 @@
 <resources>
 
     <color name="colorPrimary">#7171C6</color>
-    <color name="colorPrimaryDark">#7171C6</color>
-    <color name="colorAccent">#7171C6</color>
+    <color name="colorPrimaryDark">#9D1BB2</color>
+    <color name="colorAccent">#FF9800</color>
 
     <!-- common -->
     <color name="c0">#ff000000</color>

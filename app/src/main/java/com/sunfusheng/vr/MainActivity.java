@@ -27,7 +27,6 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private int currPosition = 0;
     private RecycleAdapter recycleAdapter;
-    private String urlString;
 
 
     @Override
@@ -42,20 +41,15 @@ public class MainActivity extends AppCompatActivity {
         ivMine = findViewById(R.id.iv_mine);
         tvTitle = findViewById(R.id.tv_title);
         ImageUtil.colorImageViewDrawable(ivMine, R.color.transparent60_white);
-
         vrPanoramaView = findViewById(R.id.vrPanoramaView);
         vrPanoramaView.setTouchTrackingEnabled(true);
         vrPanoramaView.setFullscreenButtonEnabled(true);
         vrPanoramaView.setInfoButtonEnabled(false);
         vrPanoramaView.setStereoModeButtonEnabled(false);
-
         currPosition = new Random().nextInt(StartActivity.imgMsgs.size());
         ImgMsg imgMsg = StartActivity.imgMsgs.get(currPosition);
-
         loadImgMsg(imgMsg);
-
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView = findViewById(R.id.recyclerView);
         recycleAdapter = new RecycleAdapter(this,StartActivity.imgMsgs);
