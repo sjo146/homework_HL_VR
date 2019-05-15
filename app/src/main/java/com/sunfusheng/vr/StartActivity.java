@@ -26,7 +26,6 @@ public class StartActivity extends Activity {
     private Button button;
     private ImageView imageView;
     private String urlString;
-    private URL url;
     private boolean isGet=false;
     public static ArrayList<ImgMsg> imgMsgs;
 

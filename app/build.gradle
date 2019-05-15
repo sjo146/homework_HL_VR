@@ -64,8 +64,8 @@ dependencies {
     api 'com.sunfusheng:glideimageview:1.2.0'
     api 'com.sunfusheng:FirUpdater:1.0.7'
     api 'com.google.vr:sdk-panowidget:1.80.0'
+    api 'commons-codec:commons-codec:1.10'
     api 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.28'
-    api 'commons-codec:commons-codec:1.10' 
-    
-  
+
+    implementation 'com.android.support:support-v4:27.1.1'
 }

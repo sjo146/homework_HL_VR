@@ -10,10 +10,12 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.google.vr.sdk.widgets.pano.VrPanoramaView;
+
 import com.sunfusheng.vr.about.AboutActivity;
 import com.sunfusheng.vr.adapter.RecycleAdapter;
 import com.sunfusheng.vr.model.ImgMsg;
 import com.sunfusheng.vr.utils.ImageUtil;
+
 
 import java.util.Random;
 
@@ -25,6 +27,8 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private int currPosition = 0;
     private RecycleAdapter recycleAdapter;
+    private String urlString;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,11 +54,15 @@ public class MainActivity extends AppCompatActivity {
 
         loadImgMsg(imgMsg);
 
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
 
+        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView = findViewById(R.id.recyclerView);
-        recycleAdapter = new RecycleAdapter(StartActivity.imgMsgs, this);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recycleAdapter = new RecycleAdapter(this,StartActivity.imgMsgs);
+        recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(recycleAdapter);
+
+
     }
 
 
@@ -62,12 +70,13 @@ public class MainActivity extends AppCompatActivity {
         ivMine.setOnClickListener(v -> {
             startActivity(new Intent(this, AboutActivity.class));
         });
+
         recycleAdapter.setOnItemClickListener(new RecycleAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
                 if (currPosition == position) return;
                 currPosition = position;
-               ImgMsg imgMsg=StartActivity.imgMsgs.get(currPosition);
+                ImgMsg imgMsg = StartActivity.imgMsgs.get(currPosition);
                 loadImgMsg(imgMsg);
             }
         });
