@@ -81,6 +81,7 @@ public class StartActivity extends Activity {
                     String resultData = JsonUtil.getJsonString(urlString);
                     JSONArray data = new JSONArray(resultData);
                     int line=data.length();
+                    System.out.println("line="+line);
                     for (int i = 0; i < data.length() ; i++) {
                         JSONObject j = data.getJSONObject(i);
                         imgMsgs.add(
