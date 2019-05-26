@@ -12,6 +12,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <TextView
             android:id="@+id/tv_title"
             android:layout_width="match_parent"
@@ -34,6 +35,19 @@
             android:textColor="@color/c2"
             android:textSize="@dimen/f10"/>
 
+        <ImageView
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="15dp"
+                android:layout_below="@+id/tv_desc"
+                android:layout_toLeftOf="@+id/prl_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" app:srcCompat="@mipmap/zan_un" android:id="@+id/zan_img"/>
+        <TextView
+                android:layout_below="@+id/tv_desc"
+                android:layout_toLeftOf="@+id/zan_img"
+                android:text="@string/comment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:id="@+id/tv_comment"/>
         <android.support.percent.PercentRelativeLayout
             android:id="@+id/prl_image"
             android:layout_width="100dp"

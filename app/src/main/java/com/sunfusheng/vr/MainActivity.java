@@ -3,14 +3,17 @@ package com.sunfusheng.vr;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.view.ViewParent;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.google.vr.sdk.widgets.pano.VrPanoramaView;
 
+import com.library.tabstrip.PagerSlidingTabStrip;
 import com.sunfusheng.vr.about.AboutActivity;
 import com.sunfusheng.vr.adapter.RecycleAdapter;
 import com.sunfusheng.vr.model.ImgMsg;
@@ -27,6 +30,8 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private int currPosition = 0;
     private RecycleAdapter recycleAdapter;
+    private ViewPager pager;
+    private PagerSlidingTabStrip tabs;
 
 
     @Override
@@ -51,6 +56,9 @@ public class MainActivity extends AppCompatActivity {
         loadImgMsg(imgMsg);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+
+
+
         recyclerView = findViewById(R.id.recyclerView);
         recycleAdapter = new RecycleAdapter(this,StartActivity.imgMsgs);
         recyclerView.setLayoutManager(layoutManager);

@@ -149,7 +149,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     }
     int  registerresult;
     private void registerRequest() {
-        String urlString=getResources().getString(R.string.registerurl);
+        String urlString=getResources().getString(R.string.connecturl);
         String username=mEtRegisterUsername.getText().toString();
         String pwd=mEtRegisterPwd.getText().toString();
         new Thread(new Runnable() {

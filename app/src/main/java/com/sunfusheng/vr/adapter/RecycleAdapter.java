@@ -33,12 +33,16 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.ViewHold
         ImageView imageView;
         TextView tv_title;
         TextView tv_desc;
+        TextView tv_comment;
+        ImageView zan_img;
 
         public ViewHolder(View itemView) {
             super(itemView);
             imageView = itemView.findViewById(R.id.imageView);
             tv_title = itemView.findViewById(R.id.tv_title);
             tv_desc = itemView.findViewById(R.id.tv_desc);
+            tv_comment=itemView.findViewById(R.id.tv_comment);
+            zan_img=itemView.findViewById(R.id.zan_img);
 
         }
     }

@@ -388,7 +388,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     //登录
     boolean loginresult=false;
     private void loginRequest() {
-        String urlString=getResources().getString(R.string.loginurl);
+        String urlString=getResources().getString(R.string.connecturl);
         String username=mEtLoginUsername.getText().toString();
         String pwd=mEtLoginPwd.getText().toString();
         new Thread(new Runnable() {
