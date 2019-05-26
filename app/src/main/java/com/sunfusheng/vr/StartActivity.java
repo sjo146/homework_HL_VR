@@ -52,7 +52,7 @@ public class StartActivity extends Activity {
         setContentView(R.layout.activity_start);
 
         button = (Button) findViewById(R.id.btn);
-        urlString = getResources().getString(R.string.url);
+        urlString = getResources().getString(R.string.connecturl)+"getAllImgMsg";
         imgMsgs=new ArrayList();
         getView();
         button.setOnClickListener(new OnClickListener() {
