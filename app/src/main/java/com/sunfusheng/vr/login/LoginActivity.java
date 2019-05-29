@@ -6,7 +6,6 @@ import android.animation.ValueAnimator;
 import android.content.Intent;
 import android.graphics.Rect;
 import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -22,12 +21,10 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-import com.sunfusheng.vr.MainActivity;
 import com.sunfusheng.vr.R;
-import com.sunfusheng.vr.StartActivity;
+import com.sunfusheng.vr.Load.StartActivity;
 import com.sunfusheng.vr.model.User;
 import com.sunfusheng.vr.transport.JsonUtil;
-import org.json.JSONArray;
 import org.json.JSONObject;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener, View.OnFocusChangeListener, ViewTreeObserver.OnGlobalLayoutListener, TextWatcher {
@@ -405,7 +402,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     json.put("UUsername",username);
                     json.put("UPwd",pwd);
                     String content=String.valueOf(json);
-                    String resultData = JsonUtil.getJsonString(urlString,content);
+                    String resultData = JsonUtil.getJsonString(urlString+"login",content);
                     JSONObject j = new JSONObject(resultData);
                     loginresult=j.getBoolean("loginResult");
 

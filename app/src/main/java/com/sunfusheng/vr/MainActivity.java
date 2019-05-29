@@ -8,12 +8,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.view.ViewParent;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.google.vr.sdk.widgets.pano.VrPanoramaView;
 
 import com.library.tabstrip.PagerSlidingTabStrip;
+import com.sunfusheng.vr.Load.StartActivity;
 import com.sunfusheng.vr.about.AboutActivity;
 import com.sunfusheng.vr.adapter.RecycleAdapter;
 import com.sunfusheng.vr.model.ImgMsg;

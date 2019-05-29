@@ -9,11 +9,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import com.sunfusheng.vr.Base64Util.Base64Object;
+import com.sunfusheng.vr.Load.StartActivity;
 import com.sunfusheng.vr.R;
-import com.sunfusheng.vr.StartActivity;
+import com.sunfusheng.vr.login.LoginActivity;
 import com.sunfusheng.vr.model.ImgMsg;
-import com.sunfusheng.vr.model.Zan;
 import com.sunfusheng.vr.transport.JsonUtil;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -26,12 +25,13 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.ViewHold
     private Context context;
     public OnItemClickListener itemClickListener;
     private String url;
-    private Map<Integer,Boolean> zans;
+    private Map<Integer, Boolean> zans;
+
 
     public RecycleAdapter(Context context) {
         super();
         this.imgMsgs = StartActivity.imgMsgs;
-        url=context.getResources().getString(R.string.connecturl);
+        url = context.getResources().getString(R.string.connecturl);
     }
 
     public RecycleAdapter(Context context, ArrayList<ImgMsg> imgMsgs) {
@@ -78,6 +78,15 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.ViewHold
         holder.imageView.setImageBitmap(imgMsg.assetName);
         holder.tv_title.setText(imgMsg.title);
         holder.tv_desc.setText(imgMsg.desc);
+
+        Object iszan = StartActivity.zans.get(imgMsg.imgid);
+        if (iszan == null) holder.zan_img.setImageResource(R.mipmap.zan_un);
+        else if ((Boolean) iszan == true)
+            holder.zan_img.setImageResource(R.mipmap.zan);
+        else {
+            holder.zan_img.setImageResource(R.mipmap.zan_un);
+        }
+
         holder.itemView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
@@ -107,6 +116,25 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.ViewHold
                     itemClickListener.onItemClick(v, position);
             }
         });
+        holder.zan_img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Boolean z;
+                if (iszan == null) {
+                    holder.zan_img.setImageResource(R.mipmap.zan);
+                    z = true;
+                } else if ((Boolean) iszan == true) {
+                    z = false;
+                    holder.zan_img.setImageResource(R.mipmap.zan_un);
+                } else {
+                    z = true;
+                    holder.zan_img.setImageResource(R.mipmap.zan);
+                }
+
+                StartActivity.zans.put(imgMsg.imgid, z);
+                updatezan(imgMsg.imgid);
+            }
+        });
 
     }
 
@@ -115,8 +143,26 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.ViewHold
         return imgMsgs != null ? imgMsgs.size() : 0;
     }
 
+    public void updatezan(int imgid) {
 
-
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    JSONObject jsonObject = new JSONObject();
+                    jsonObject.put("uid", LoginActivity.user.getUId());
+                    jsonObject.put("imgid",imgid);
+                    jsonObject.put("iszan",StartActivity.zans.get(imgid));
+                    String resultData = JsonUtil.getJsonString(url + "updatezan", jsonObject.toString());
+                    JSONObject j = new JSONObject(resultData);
+                    String msg=j.getString("msg");
+                    System.out.println(msg);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+    }
 }
 
 
