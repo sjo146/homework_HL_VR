@@ -1,6 +1,7 @@
 package com.sunfusheng.vr.adapter;
 
 import android.content.Context;
+import android.os.Message;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -8,24 +9,33 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import com.google.vr.sdk.widgets.common.TouchTracker;
+import com.sunfusheng.vr.Base64Util.Base64Object;
 import com.sunfusheng.vr.R;
 import com.sunfusheng.vr.StartActivity;
 import com.sunfusheng.vr.model.ImgMsg;
+import com.sunfusheng.vr.model.Zan;
+import com.sunfusheng.vr.transport.JsonUtil;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.ViewHolder> {
     public ArrayList<ImgMsg> imgMsgs;
     private Context context;
     public OnItemClickListener itemClickListener;
+    private String url;
+    private Map<Integer,Boolean> zans;
 
     public RecycleAdapter(Context context) {
         super();
         this.imgMsgs = StartActivity.imgMsgs;
+        url=context.getResources().getString(R.string.connecturl);
     }
-    public RecycleAdapter(Context context,ArrayList<ImgMsg> imgMsgs) {
-        this.context=context;
+
+    public RecycleAdapter(Context context, ArrayList<ImgMsg> imgMsgs) {
+        this.context = context;
         this.imgMsgs = StartActivity.imgMsgs;
     }
 
@@ -41,8 +51,8 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.ViewHold
             imageView = itemView.findViewById(R.id.imageView);
             tv_title = itemView.findViewById(R.id.tv_title);
             tv_desc = itemView.findViewById(R.id.tv_desc);
-            tv_comment=itemView.findViewById(R.id.tv_comment);
-            zan_img=itemView.findViewById(R.id.zan_img);
+            tv_comment = itemView.findViewById(R.id.tv_comment);
+            zan_img = itemView.findViewById(R.id.zan_img);
 
         }
     }
@@ -104,6 +114,7 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.ViewHold
     public int getItemCount() {
         return imgMsgs != null ? imgMsgs.size() : 0;
     }
+
 
 
 }

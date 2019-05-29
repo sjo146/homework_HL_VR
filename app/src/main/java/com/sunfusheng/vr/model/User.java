@@ -13,11 +13,19 @@ public class User {
         this.UId = UId;
     }
 
+    public String getUUsername() {
+        return UUsername;
+    }
+
+    public void setUUsername(String UUsername) {
+        this.UUsername = UUsername;
+    }
+
     public String getUPwd() {
         return UPwd;
     }
 
-    public String getUUsername() {
-        return UUsername;
+    public void setUPwd(String UPwd) {
+        this.UPwd = UPwd;
     }
 }

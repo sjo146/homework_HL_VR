@@ -13,12 +13,14 @@ import android.widget.ImageView;
 import android.widget.Toast;
 import com.sunfusheng.vr.Base64Util.Base64Object;
 import com.sunfusheng.vr.model.ImgMsg;
+import com.sunfusheng.vr.model.Zan;
 import com.sunfusheng.vr.transport.JsonUtil;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Map;
 
 
 public class StartActivity extends Activity {
@@ -28,6 +30,7 @@ public class StartActivity extends Activity {
     private String urlString;
     private boolean isGet=false;
     public static ArrayList<ImgMsg> imgMsgs;
+    public static Map<Integer,Boolean> zans;
 
 
     Handler handler = new Handler() {
@@ -52,7 +55,7 @@ public class StartActivity extends Activity {
         setContentView(R.layout.activity_start);
 
         button = (Button) findViewById(R.id.btn);
-        urlString = getResources().getString(R.string.connecturl)+"getAllImgMsg";
+        urlString = getResources().getString(R.string.connecturl);
         imgMsgs=new ArrayList();
         getView();
         button.setOnClickListener(new OnClickListener() {
@@ -78,14 +81,15 @@ public class StartActivity extends Activity {
             @Override
             public void run() {
                 try {
-                    String resultData = JsonUtil.getJsonString(urlString);
+                    String resultData = JsonUtil.getJsonString(urlString+"getAllImgMsg");
                     JSONArray data = new JSONArray(resultData);
                     int line=data.length();
                     System.out.println("line="+line);
                     for (int i = 0; i < data.length() ; i++) {
                         JSONObject j = data.getJSONObject(i);
                         imgMsgs.add(
-                                new ImgMsg(j.getInt("imgType"),
+                                new ImgMsg(j.getInt("imgId"),
+                                        j.getInt("imgType"),
                                         j.getString("imgTitle"),
                                         j.getString("imgDesc"),
                                         Base64Object.base64ToBitmap(Base64Object.base64ToString(j.getString("imgAssetName")))
@@ -102,5 +106,37 @@ public class StartActivity extends Activity {
             }
         }).start();
 
+    }
+
+    void getItemZanState() {
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    String resultData = JsonUtil.getJsonString(urlString+"getZanbyImgID");
+                    JSONArray data = new JSONArray(resultData);
+                    int line = data.length();
+                    System.out.println("line=" + line);
+                    for (int i = 0; i < data.length(); i++) {
+                        JSONObject j = data.getJSONObject(i);
+                       /* imgMsgs.add(
+                                new Zan(j.getInt("imgid"),
+                                        j.getBoolean("iszan")
+
+                                ));
+
+                        */
+                        // imgMsgs.add(new ImgMsg(j.getInt("imgType"), j.getString("imgTitle"), j.getString("imgDesc"), Base64Object.base64ToBitmap(Base64Object.base64ToString(j.getString("imgAssetName")))));
+                    }
+
+                    Message message = handler.obtainMessage();
+                    message.arg1 = 1;
+                    handler.sendMessage(message);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
     }
 }

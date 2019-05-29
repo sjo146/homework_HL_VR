@@ -25,6 +25,7 @@ import android.widget.Toast;
 import com.sunfusheng.vr.MainActivity;
 import com.sunfusheng.vr.R;
 import com.sunfusheng.vr.StartActivity;
+import com.sunfusheng.vr.model.User;
 import com.sunfusheng.vr.transport.JsonUtil;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -54,6 +55,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     private int mLogoHeight;
     private int mLogoWidth;
+
+    public static User user;//存下用户名和密码全局调用
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -391,6 +394,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         String urlString=getResources().getString(R.string.connecturl);
         String username=mEtLoginUsername.getText().toString();
         String pwd=mEtLoginPwd.getText().toString();
+        user=new User();
+        user.setUUsername(username);
+        user.setUPwd(pwd);
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -400,15 +406,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     json.put("UPwd",pwd);
                     String content=String.valueOf(json);
                     String resultData = JsonUtil.getJsonString(urlString,content);
-                    JSONArray data = new JSONArray(resultData);
-                    int line=data.length();
-                    for (int i = 0; i < data.length() ; i++) {
-                        JSONObject j = data.getJSONObject(i);
-                        loginresult=j.getBoolean("loginResult");
-                        // imgMsgs.add(new ImgMsg(j.getInt("imgType"), j.getString("imgTitle"), j.getString("imgDesc"), Base64Object.base64ToBitmap(Base64Object.base64ToString(j.getString("imgAssetName")))));
-                    }
+                    JSONObject j = new JSONObject(resultData);
+                    loginresult=j.getBoolean("loginResult");
+
                     if(loginresult)
                     {
+                        user.setUId(j.getInt("uid"));
                         Intent intent=new Intent(LoginActivity.this,StartActivity.class);
                         startActivity(intent);
                     }
