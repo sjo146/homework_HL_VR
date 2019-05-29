@@ -20,6 +20,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 
 
@@ -110,9 +111,10 @@ public class StartActivity extends Activity {
             @Override
             public void run() {
                 try {
+                    zans=new HashMap();
                     JSONObject jsonObject = new JSONObject();
                     jsonObject.put("uid", LoginActivity.user.getUId());
-                    String resultData = JsonUtil.getJsonString(urlString + "getAllZans", jsonObject.toString());
+                    String resultData = JsonUtil.getJsonString(urlString + "getAllZans", String.valueOf(jsonObject));
                     JSONArray data = new JSONArray(resultData);
                     int line = data.length();
                     System.out.println("line=" + line);

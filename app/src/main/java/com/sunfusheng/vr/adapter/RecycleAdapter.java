@@ -37,6 +37,7 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.ViewHold
     public RecycleAdapter(Context context, ArrayList<ImgMsg> imgMsgs) {
         this.context = context;
         this.imgMsgs = StartActivity.imgMsgs;
+        url = context.getResources().getString(R.string.connecturl);
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {
@@ -79,14 +80,19 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.ViewHold
         holder.tv_title.setText(imgMsg.title);
         holder.tv_desc.setText(imgMsg.desc);
 
-        Object iszan = StartActivity.zans.get(imgMsg.imgid);
-        if (iszan == null) holder.zan_img.setImageResource(R.mipmap.zan_un);
-        else if ((Boolean) iszan == true)
-            holder.zan_img.setImageResource(R.mipmap.zan);
-        else {
+        Boolean iszan =false;
+        if (!StartActivity.zans.containsKey(imgMsg.imgid)){
             holder.zan_img.setImageResource(R.mipmap.zan_un);
+            StartActivity.zans.put(imgMsg.imgid,false);
         }
-
+        else {
+            iszan=StartActivity.zans.get(imgMsg.imgid);
+            if (iszan == true)
+                holder.zan_img.setImageResource(R.mipmap.zan);
+            else {
+                holder.zan_img.setImageResource(R.mipmap.zan_un);
+            }
+        }
         holder.itemView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
@@ -120,10 +126,8 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.ViewHold
             @Override
             public void onClick(View view) {
                 Boolean z;
-                if (iszan == null) {
-                    holder.zan_img.setImageResource(R.mipmap.zan);
-                    z = true;
-                } else if ((Boolean) iszan == true) {
+
+               if (StartActivity.zans.get(imgMsg.imgid) == true) {
                     z = false;
                     holder.zan_img.setImageResource(R.mipmap.zan_un);
                 } else {
@@ -153,7 +157,7 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.ViewHold
                     jsonObject.put("uid", LoginActivity.user.getUId());
                     jsonObject.put("imgid",imgid);
                     jsonObject.put("iszan",StartActivity.zans.get(imgid));
-                    String resultData = JsonUtil.getJsonString(url + "updatezan", jsonObject.toString());
+                    String resultData = JsonUtil.getJsonString(url + "updatezan", String.valueOf(jsonObject));
                     JSONObject j = new JSONObject(resultData);
                     String msg=j.getString("msg");
                     System.out.println(msg);
