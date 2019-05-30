@@ -1,11 +1,19 @@
 package com.sunfusheng.vr.model;
 
-public class Comment {
+public class Comment_name {
     private int Cid;
     private int Imgid;
     private int Uid;
     private String Pinglun;
+    private String UUsername;
 
+    public String getUUsername() {
+        return UUsername;
+    }
+
+    public void setUUsername(String UUsername) {
+        this.UUsername = UUsername;
+    }
 
     public int getCid() {
         return Cid;

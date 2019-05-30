@@ -79,7 +79,7 @@
                 android:background="@color/c3"/>
 
     </LinearLayout>
-
+<!--
     <fragment android:name="com.sunfusheng.vr.Comment.CommentFragment"
             android:layout_below="@+id/picFrame"
             android:layout_marginTop="25dp"
@@ -87,6 +87,7 @@
             android:layout_height="wrap_content">
 
     </fragment>
+    -->
 
     <LinearLayout
             android:id="@+id/typeFrame"
@@ -96,8 +97,9 @@
             android:orientation="horizontal"
     >
 
-        <EditText android:id="@+id/pingluntext"
+        <TextView android:id="@+id/pingluntext"
                   android:layout_width="0dp"
+                  android:textSize="20dp"
                   android:hint="请输入你的评论吧"
                   android:layout_height="wrap_content"
                   android:layout_weight="1"
