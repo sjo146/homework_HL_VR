@@ -13,7 +13,8 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
         <activity
-                android:name=".Comment.CommentLoading">
+                android:name=".Comment.CommentLoading"
+                android:parentActivityName=".MainActivity">
         </activity>
         <activity android:name=".Comment.CommentActivity">
 
