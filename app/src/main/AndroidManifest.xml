@@ -12,19 +12,22 @@
             android:label="@string/app_name"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
-        <activity android:name=".MyInfo.MyInfoActivity">
+        <activity
+                android:name=".Comment.CommentLoading">
+        </activity>
+        <activity android:name=".Comment.CommentActivity">
+
+        </activity>
+        <activity android:name=".login.RegisterActivity">
+        </activity>
+        <activity android:name=".login.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".login.RegisterActivity">
-        </activity>
-        <activity android:name=".login.LoginActivity">
-        </activity>
-        <activity android:name=".StartActivity">
-
+        <activity android:name=".Load.StartActivity">
         </activity>
         <activity android:name=".MainActivity">
         </activity>

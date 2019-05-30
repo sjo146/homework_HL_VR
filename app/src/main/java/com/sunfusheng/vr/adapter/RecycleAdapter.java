@@ -1,6 +1,7 @@
 package com.sunfusheng.vr.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Message;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -9,6 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import com.sunfusheng.vr.Comment.CommentActivity;
+import com.sunfusheng.vr.Comment.CommentLoading;
 import com.sunfusheng.vr.Load.StartActivity;
 import com.sunfusheng.vr.R;
 import com.sunfusheng.vr.login.LoginActivity;
@@ -137,6 +140,14 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.ViewHold
 
                 StartActivity.zans.put(imgMsg.imgid, z);
                 updatezan(imgMsg.imgid);
+            }
+        });
+        holder.tv_comment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(context, CommentLoading.class);
+                intent.putExtra("imgid",imgMsg.imgid);
+                context.startActivity(intent);
             }
         });
 

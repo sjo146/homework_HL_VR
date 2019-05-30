@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <RelativeLayout
-        xmlns:tools="http://schemas.android.com/tools" android:layout_width="fill_parent"
-        android:layout_height="fill_parent" xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto">
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" xmlns:app="http://schemas.android.com/apk/res-auto"
+
+>
 
 
     <LinearLayout
@@ -41,19 +43,7 @@
                     android:textColor="@color/c2"
                     android:textSize="@dimen/f10"/>
 
-            <ImageView
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="15dp"
-                    android:layout_below="@+id/tv_desc"
-                    android:layout_toLeftOf="@+id/prl_image"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" app:srcCompat="@mipmap/zan_un" android:id="@+id/zan_img"/>
-            <TextView
-                    android:layout_below="@+id/tv_desc"
-                    android:layout_toLeftOf="@+id/zan_img"
-                    android:text="@string/comment"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" android:id="@+id/tv_comment"/>
+
             <android.support.percent.PercentRelativeLayout
                     android:id="@+id/prl_image"
                     android:layout_width="100dp"
@@ -80,36 +70,43 @@
 
     </LinearLayout>
 
-    <android.support.v7.widget.RecyclerView
-            android:layout_marginTop="10dp"
+    <fragment
+            android:id="@+id/pinglun_frag"
+            android:name="com.sunfusheng.vr.Comment.CommentFragment"
             android:layout_below="@+id/picFrame"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_marginTop="25dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:tag="pinglun_frag">
+
+    </fragment>
+
     <LinearLayout
             android:id="@+id/typeFrame"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:orientation="horizontal"
+
     >
 
-        <EditText android:id="@+id/pingluntext"
+        <TextView android:id="@+id/pingluntext"
                   android:layout_width="0dp"
+                  android:textSize="20dp"
                   android:hint="请输入你的评论吧"
                   android:layout_height="wrap_content"
-                  android:layout_weight="1"
-                  >
-
-        </EditText>
-        <Button android:text="确定"
-                android:layout_weight="0"
-                android:id="@+id/submit_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                  android:layout_weight="5"
+                  android:layout_marginBottom="10dp"
+                  android:layout_marginLeft="7dp"
         />
 
-    </LinearLayout>
+        <ImageView
 
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp" app:srcCompat="@mipmap/pic_pinglun" android:id="@+id/pic"/>
+
+    </LinearLayout>
 
 
 </RelativeLayout>
