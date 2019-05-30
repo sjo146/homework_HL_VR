@@ -36,7 +36,6 @@ public class StartActivity extends Activity {
         public void handleMessage(android.os.Message msg) {
             if (msg.arg1 == 1) {
                 Log.println(Log.WARN, "msg", "成功得到图片信息");
-                Toast.makeText(StartActivity.this, "加载图片完成", Toast.LENGTH_LONG).show();
                 getItemZanState();
                 isGet = true;
             }
@@ -44,7 +43,6 @@ public class StartActivity extends Activity {
                 Toast.makeText(StartActivity.this, "网络繁忙！稍后再试", Toast.LENGTH_LONG).show();
             }
             if (msg.arg1 == 3) {
-                Toast.makeText(StartActivity.this, "加载赞完成", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(StartActivity.this, MainActivity.class);
                 startActivity(intent);
             }

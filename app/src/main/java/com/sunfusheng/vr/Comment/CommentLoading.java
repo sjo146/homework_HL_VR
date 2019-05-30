@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.widget.Toast;
 import com.sunfusheng.vr.R;
 import com.sunfusheng.vr.model.Comment_name;
@@ -55,8 +56,13 @@ public class CommentLoading extends AppCompatActivity {
                     JSONObject jsonObject = new JSONObject();
                     jsonObject.put("imgid", imgid);
                     String resultData = JsonUtil.getJsonString(url + "getAllCommentByimgid", String.valueOf(jsonObject));
+                    JSONArray data;
+                    Log.e("接收到的评论",resultData+resultData.length());
+                    if(resultData.length()!=3){
                     int length=resultData.length()-1;
-                    JSONArray data = new JSONArray(resultData.substring(1,length));
+                    data = new JSONArray(resultData.substring(1,length));}
+                    else
+                      data = new JSONArray(resultData);
                     int line = data.length();
                     comment_names = new ArrayList();
                     System.out.println("line=" + line);
