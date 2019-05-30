@@ -80,11 +80,14 @@
 
     </LinearLayout>
 
-    <android.support.v7.widget.RecyclerView
-            android:layout_marginTop="10dp"
+    <fragment android:name="com.sunfusheng.vr.Comment.CommentFragment"
             android:layout_below="@+id/picFrame"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_marginTop="25dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+    </fragment>
+
     <LinearLayout
             android:id="@+id/typeFrame"
             android:layout_width="match_parent"
@@ -98,18 +101,13 @@
                   android:hint="请输入你的评论吧"
                   android:layout_height="wrap_content"
                   android:layout_weight="1"
-                  >
-
-        </EditText>
-        <Button android:text="确定"
+       />
+        <ImageView
                 android:layout_weight="0"
-                android:id="@+id/submit_btn"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-        />
+                android:layout_height="wrap_content" app:srcCompat="@mipmap/pic_pinglun" android:id="@+id/pic"/>
 
     </LinearLayout>
-
 
 
 </RelativeLayout>
