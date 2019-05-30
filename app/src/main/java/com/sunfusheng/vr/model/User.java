@@ -3,7 +3,8 @@ package com.sunfusheng.vr.model;
 public class User {
     int UId;
     String UUsername;
-    String UPwd;
+    String UPassword;
+    String UPersonal;
 
     public int getUId() {
         return UId;
@@ -21,11 +22,19 @@ public class User {
         this.UUsername = UUsername;
     }
 
-    public String getUPwd() {
-        return UPwd;
+    public void setUPassword(String UPassword) {
+        this.UPassword = UPassword;
     }
 
-    public void setUPwd(String UPwd) {
-        this.UPwd = UPwd;
+    public String getUPassword() {
+        return UPassword;
+    }
+
+    public String getUPersonal() {
+        return UPersonal;
+    }
+
+    public void setUPersonal(String UPersonal) {
+        this.UPersonal = UPersonal;
     }
 }

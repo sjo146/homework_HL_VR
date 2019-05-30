@@ -21,6 +21,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+import com.sunfusheng.vr.MyInfo.MyInfoActivity;
 import com.sunfusheng.vr.R;
 import com.sunfusheng.vr.Load.StartActivity;
 import com.sunfusheng.vr.model.User;
@@ -393,7 +394,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         String pwd=mEtLoginPwd.getText().toString();
         user=new User();
         user.setUUsername(username);
-        user.setUPwd(pwd);
+        user.setUPassword(pwd);
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -409,7 +410,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     if(loginresult)
                     {
                         user.setUId(j.getInt("uid"));
-                        Intent intent=new Intent(LoginActivity.this,StartActivity.class);
+                        user.setUPersonal(j.getString("upersonal"));
+                        user.setUUsername(j.getString("uusername"));
+                        Intent intent=new Intent(LoginActivity.this, MyInfoActivity.class);
                         startActivity(intent);
                     }
                     else

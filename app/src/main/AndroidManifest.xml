@@ -14,10 +14,10 @@
             android:theme="@style/AppTheme">
         <activity
                 android:name=".Comment.CommentLoading"
-                android:parentActivityName=".MainActivity">
+                android:parentActivityName=".MainActivity"/>
+        <activity android:name=".MyInfo.NoZanActivity">
         </activity>
         <activity android:name=".Comment.CommentActivity">
-
         </activity>
         <activity android:name=".login.RegisterActivity">
         </activity>
@@ -33,6 +33,11 @@
         <activity android:name=".MainActivity">
         </activity>
         <activity android:name=".about.AboutActivity"/>
+        <activity android:name=".MyInfo.MyInfoActivity"/>
+        <activity android:name=".MyInfo.MyZanActivity"/>
+        <activity android:name=".MyInfo.MyPwdActivity"/>
+        <activity android:name=".MyInfo.AboutUsActivity"/>
+        <activity android:name=".Load.LoadZanActivity"/>
     </application>
 
 </manifest>

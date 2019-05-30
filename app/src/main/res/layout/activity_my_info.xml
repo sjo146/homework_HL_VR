@@ -11,17 +11,36 @@
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-        <Space
-                android:layout_width="match_parent"
-                android:layout_height="60dp"/>
-        <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" app:srcCompat="@drawable/earth" android:id="@+id/imageView2"/>
-        <Space
-                android:layout_width="match_parent"
-                android:layout_height="60dp"/>
-
         <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="280dp"
+                android:background="@drawable/commom_top"
+                android:id="@+id/top">
+            <include
+                    android:id="@+id/ly_register_bar"
+                    layout="@layout/activity_main_login_navigation_bar" />
+            <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" app:srcCompat="@drawable/earth" android:id="@+id/imageView2"/>
+            <TextView
+                    android:text="用户名"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:id="@+id/username"/>
+            <TextView
+                    android:text="个性签名"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:id="@+id/personal"/>
+            <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"/>
+        </LinearLayout>
+
+       <!-- <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="50dp">
@@ -42,7 +61,61 @@
                     android:layout_width="24dp"
                     android:layout_height="24dp" app:srcCompat="@mipmap/right" android:id="@+id/imageView4"
                     android:layout_weight="1"/>
+        </LinearLayout>-->
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="50dp">
+            <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp" app:srcCompat="@mipmap/heart"
+                    android:id="@+id/like"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"/>
+            <!--android:scaleType="fitStart"-->
+            <TextView
+                    android:text="我的点赞"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:id="@+id/likeTip" android:layout_weight="1"/>
+            <ImageButton
+                    android:layout_width="24dp"
+                    android:layout_height="24dp" app:srcCompat="@mipmap/right"
+                    android:layout_gravity="center"
+                    android:id="@+id/likeDetail"
+                    android:background="#00000000"
+                    android:scaleType="centerInside"
+                    android:layout_weight="1"/>
         </LinearLayout>
+
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="50dp">
+            <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp" app:srcCompat="@mipmap/comment"
+                    android:id="@+id/comment"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"/>
+            <!--android:scaleType="fitStart"-->
+            <TextView
+                    android:text="我的评论"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:id="@+id/commentTip" android:layout_weight="1"/>
+            <ImageButton
+                    android:layout_width="24dp"
+                    android:layout_height="24dp" app:srcCompat="@mipmap/right"
+                    android:layout_gravity="center"
+                    android:id="@+id/commentDetail"
+                    android:background="#00000000"
+                    android:scaleType="centerInside"
+                    android:layout_weight="1"/>
+        </LinearLayout>
+
         <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
@@ -51,33 +124,22 @@
                     android:layout_width="24dp"
                     android:layout_height="24dp" app:srcCompat="@mipmap/key"
                     android:id="@+id/key"
-                    android:scaleType="fitStart"
+                    android:layout_gravity="center"
                     android:layout_weight="1"/>
+            <!--android:scaleType="fitStart"-->
             <TextView
-                    android:text="密码"
+                    android:text="我的密码"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" android:id="@+id/pwdTip" android:layout_weight="1"/>
-            <ImageView
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:id="@+id/pwdTip" android:layout_weight="1"/>
+            <ImageButton
                     android:layout_width="24dp"
-                    android:layout_height="24dp" app:srcCompat="@mipmap/right" android:id="@+id/keyDetail"
-                    android:layout_weight="1"/>
-        </LinearLayout>
-        <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="50dp">
-            <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp" app:srcCompat="@mipmap/heart"
-                    android:id="@+id/label"
-                    android:layout_weight="1"/>
-            <TextView
-                    android:text="我的点赞"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" android:id="@+id/likeTip" android:layout_weight="1"/>
-            <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp" app:srcCompat="@mipmap/right" android:id="@+id/likeDetail"
+                    android:layout_height="24dp" app:srcCompat="@mipmap/write"
+                    android:layout_gravity="center"
+                    android:id="@+id/changeKey"
+                    android:background="#00000000"
+                    android:scaleType="centerInside"
                     android:layout_weight="1"/>
         </LinearLayout>
 
@@ -87,27 +149,28 @@
                 android:layout_height="50dp">
             <ImageView
                     android:layout_width="24dp"
-                    android:layout_height="24dp" app:srcCompat="@mipmap/star"
-                    android:id="@+id/collection"
+                    android:layout_height="24dp" app:srcCompat="@mipmap/about"
+                    android:id="@+id/about"
+                    android:layout_gravity="center"
                     android:layout_weight="1"/>
+            <!--android:scaleType="fitStart"-->
             <TextView
-                    android:text="我的收藏"
+                    android:text="关于我们"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" android:id="@+id/collectionTip" android:layout_weight="1"/>
-
-            <ImageView
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:id="@+id/aboutTip" android:layout_weight="1"/>
+            <ImageButton
                     android:layout_width="24dp"
-                    android:layout_height="24dp" app:srcCompat="@mipmap/right" android:id="@+id/collectionDetail"
+                    android:layout_height="24dp" app:srcCompat="@mipmap/right"
+                    android:layout_gravity="center"
+                    android:id="@+id/aboutDetail"
+                    android:background="#00000000"
+                    android:scaleType="centerInside"
                     android:layout_weight="1"/>
         </LinearLayout>
 
 
-        <ImageView
-                android:id="@+id/line"
-                android:layout_width="match_parent"
-                android:layout_height="20dp"
-                android:background="#c2c2c2"
-                android:layout_alignParentBottom="true"
-                android:visibility="gone"/>
     </LinearLayout>
+
 </android.support.constraint.ConstraintLayout>
