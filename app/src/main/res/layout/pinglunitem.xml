@@ -15,8 +15,8 @@
 
         <ImageView
                 android:layout_marginLeft="5dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" app:srcCompat="@mipmap/pinglun_user"
+                android:layout_width="22dp"
+                android:layout_height="24dp" app:srcCompat="@mipmap/pinglun_user"
                 android:id="@+id/user_pinglun"/>
         <TextView
                 android:layout_toRightOf="@id/user_pinglun"
@@ -24,7 +24,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="@dimen/d4"
-                android:layout_toLeftOf="@+id/prl_image"
+                android:layout_margin="5dp"
                 android:textColor="@color/c1"
                 android:textSize="@dimen/f7"/>
 

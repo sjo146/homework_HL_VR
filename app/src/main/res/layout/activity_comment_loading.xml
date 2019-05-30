@@ -26,11 +26,9 @@
         <TextView
                 android:textSize="30dp"
                 android:layout_below="@+id/avi"
-                android:text="正在疯狂加载中"
+                android:text="疯狂加载评论中"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" android:id="@+id/loadtext"/>
 
     </RelativeLayout>
 </LinearLayout>
-
-

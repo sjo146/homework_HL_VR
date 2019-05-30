@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.sunfusheng.vr.Comment.CommentActivity;
+import com.sunfusheng.vr.Comment.CommentLoading;
 import com.sunfusheng.vr.Load.StartActivity;
 import com.sunfusheng.vr.R;
 import com.sunfusheng.vr.login.LoginActivity;
@@ -144,7 +145,7 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.ViewHold
         holder.tv_comment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(context, CommentActivity.class);
+                Intent intent=new Intent(context, CommentLoading.class);
                 intent.putExtra("imgid",imgMsg.imgid);
                 context.startActivity(intent);
             }

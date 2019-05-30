@@ -27,5 +27,6 @@
     <dimen name="t3">28dp</dimen>
     <dimen name="t4">22dp</dimen>
     <dimen name="t5">15dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
 
 </resources>

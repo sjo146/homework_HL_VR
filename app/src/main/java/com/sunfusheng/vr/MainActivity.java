@@ -54,11 +54,9 @@ public class MainActivity extends AppCompatActivity {
         currPosition = new Random().nextInt(StartActivity.imgMsgs.size());
         ImgMsg imgMsg = StartActivity.imgMsgs.get(currPosition);
         loadImgMsg(imgMsg);
+
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-
-
-
         recyclerView = findViewById(R.id.recyclerView);
         recycleAdapter = new RecycleAdapter(this,StartActivity.imgMsgs);
         recyclerView.setLayoutManager(layoutManager);

@@ -4,6 +4,8 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Rect;
+import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatDialog;
 import android.text.Editable;
@@ -14,6 +16,10 @@ import android.view.*;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.*;
 import com.sunfusheng.vr.R;
+import com.sunfusheng.vr.login.LoginActivity;
+import com.sunfusheng.vr.model.Comment_name;
+import com.sunfusheng.vr.transport.JsonUtil;
+import org.json.JSONObject;
 
 public class InputTextMsgDialog extends AppCompatDialog {
     private Context mContext;
@@ -24,6 +30,22 @@ public class InputTextMsgDialog extends AppCompatDialog {
     private int mLastDiff = 0;
     private TextView tvNumber;
     private int maxNumber = 200;
+    private String url;
+    private int cid;
+    private Handler handler = new Handler() {
+        public void handleMessage(android.os.Message msg) {
+            if (msg.arg1 == 1) {
+                for (Comment_name comment_name : CommentLoading.comment_names) {
+                    if (comment_name.getCid() == 0) {
+                        comment_name.setCid(cid);
+                        break;
+                    }
+                }
+            }
+
+
+        }
+    };
 
     public interface OnTextSendListener {
 
@@ -35,6 +57,7 @@ public class InputTextMsgDialog extends AppCompatDialog {
 
     public InputTextMsgDialog(@NonNull Context context, int theme) {
         super(context, theme);
+        url = context.getString(R.string.connecturl);
         this.mContext = context;
         this.getWindow().setWindowAnimations(R.style.main_menu_animstyle);
         init();
@@ -105,7 +128,7 @@ public class InputTextMsgDialog extends AppCompatDialog {
         ll_tv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String msg = messageTextView.getText().toString().trim();
+                String msg = messageTextView.getText().toString().trim();//去掉字符两侧的空白
                 if (msg.length() > maxNumber) {
                     Toast.makeText(mContext, "超过最大字数限制", Toast.LENGTH_LONG).show();
                     return;
@@ -113,6 +136,16 @@ public class InputTextMsgDialog extends AppCompatDialog {
 
                 if (!TextUtils.isEmpty(msg)) {
                     System.out.println(msg);
+                    Comment_name comment_name = new Comment_name();
+                    comment_name.setUUsername(LoginActivity.user.getUUsername());
+                    comment_name.setImgid(CommentLoading.imgid);
+                    comment_name.setPinglun(msg);
+                    comment_name.setUid(LoginActivity.user.getUId());
+                    CommentLoading.isgetPinglun = true;
+                    CommentLoading.comment_names.add(comment_name);
+                    insertPinglun(msg);
+                    dismiss();
+                    onCreate(null);
                     /*
                     mOnTextSendListener.onTextSend(msg);
                     imm.showSoftInput(messageTextView, InputMethodManager.SHOW_FORCED);
@@ -234,4 +267,29 @@ public class InputTextMsgDialog extends AppCompatDialog {
     public void show() {
         super.show();
     }
+
+    public void insertPinglun(String pinglun) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    JSONObject jsonObject = new JSONObject();
+                    jsonObject.put("imgid", CommentLoading.imgid);
+                    jsonObject.put("uid", LoginActivity.user.getUId());
+                    jsonObject.put("comment", pinglun);
+                    String resultData = JsonUtil.getJsonString(url + "writeAComment", String.valueOf(jsonObject));
+                    JSONObject j = new JSONObject(resultData);
+                    Log.e("是否评论成功", j.getString("msg"));
+                    cid = j.getInt("cid");
+                    Message message = handler.obtainMessage();
+                    message.arg1 = 1;
+                    handler.sendMessage(message);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+    }
+
+
 }
