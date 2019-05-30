@@ -66,7 +66,7 @@ public class CommentFragment extends Fragment {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
-
+/*
     public void getImgComment() {
         new Thread(new Runnable() {
             @Override
@@ -93,4 +93,6 @@ public class CommentFragment extends Fragment {
             }
         }).start();
     }
+
+ */
 }
