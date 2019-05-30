@@ -135,7 +135,6 @@ public class InputTextMsgDialog extends AppCompatDialog {
                 }
 
                 if (!TextUtils.isEmpty(msg)) {
-                    System.out.println(msg);
                     Comment_name comment_name = new Comment_name();
                     comment_name.setUUsername(LoginActivity.user.getUUsername());
                     comment_name.setImgid(CommentLoading.imgid);
@@ -279,7 +278,6 @@ public class InputTextMsgDialog extends AppCompatDialog {
                     jsonObject.put("comment", pinglun);
                     String resultData = JsonUtil.getJsonString(url + "writeAComment", String.valueOf(jsonObject));
                     JSONObject j = new JSONObject(resultData);
-                    Log.e("是否评论成功", j.getString("msg"));
                     cid = j.getInt("cid");
                     Message message = handler.obtainMessage();
                     message.arg1 = 1;

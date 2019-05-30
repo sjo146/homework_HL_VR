@@ -57,15 +57,12 @@ public class CommentLoading extends AppCompatActivity {
                     jsonObject.put("imgid", imgid);
                     String resultData = JsonUtil.getJsonString(url + "getAllCommentByimgid", String.valueOf(jsonObject));
                     JSONArray data;
-                    Log.e("接收到的评论",resultData+resultData.length());
                     if(resultData.length()!=3){
                     int length=resultData.length()-1;
                     data = new JSONArray(resultData.substring(1,length));}
                     else
                       data = new JSONArray(resultData);
-                    int line = data.length();
                     comment_names = new ArrayList();
-                    System.out.println("line=" + line);
                     for (int i = 0; i < data.length(); i++) {
                         JSONObject j = data.getJSONObject(i);
                         Comment_name comment_name = new Comment_name();
