@@ -38,6 +38,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private String TAG = "ifu25";
 
     private ImageButton mIbNavigationBack;
+    private LinearLayout mLlLoginPull;
+    private View mLlLoginLayer;
+    private LinearLayout mLlLoginOptions;
     private EditText mEtLoginUsername;
     private EditText mEtLoginPwd;
     private LinearLayout mLlLoginUsername;
@@ -83,6 +86,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     //初始化视图
     private void initView() {
         //登录层、下拉层、其它登录方式层
+        mLlLoginLayer = findViewById(R.id.ll_login_layer);
+        mLlLoginPull = findViewById(R.id.ll_login_pull);
+        mLlLoginOptions = findViewById(R.id.ll_login_options);
+
         //导航栏+返回按钮
         mLayBackBar = findViewById(R.id.ly_retrieve_bar);
         mIbNavigationBack = findViewById(R.id.ib_navigation_back);
@@ -110,6 +117,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
 
         //注册点击事件
+        mLlLoginPull.setOnClickListener(this);
         mIbNavigationBack.setOnClickListener(this);
         mEtLoginUsername.setOnClickListener(this);
         mIvLoginUsernameDel.setOnClickListener(this);
@@ -117,6 +125,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         mBtLoginRegister.setOnClickListener(this);
         mEtLoginPwd.setOnClickListener(this);
         mIvLoginPwdDel.setOnClickListener(this);
+        findViewById(R.id.ib_login_weibo).setOnClickListener(this);
+        findViewById(R.id.ib_login_qq).setOnClickListener(this);
+        findViewById(R.id.ib_login_wx).setOnClickListener(this);
 
         //注册其它事件
         mLayBackBar.getViewTreeObserver().addOnGlobalLayoutListener(this);
@@ -161,7 +172,35 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 break;
             case R.id.tv_login_forget_pwd:
                 //忘记密码
-                // startActivity(new Intent(LoginActivity.this, ForgetPwdActivity.class));
+               // startActivity(new Intent(LoginActivity.this, ForgetPwdActivity.class));
+                break;
+            case R.id.ll_login_layer:
+            case R.id.ll_login_pull:
+                mLlLoginPull.animate().cancel();
+                mLlLoginLayer.animate().cancel();
+
+                int height = mLlLoginOptions.getHeight();
+                float progress = (mLlLoginLayer.getTag() != null && mLlLoginLayer.getTag() instanceof Float) ? (float) mLlLoginLayer.getTag() : 1;
+                int time = (int) (360 * progress);
+
+                if (mLlLoginPull.getTag() != null) {
+                    mLlLoginPull.setTag(null);
+                    glide(height, progress, time);
+                } else {
+                    mLlLoginPull.setTag(true);
+                    upGlide(height, progress, time);
+                }
+                break;
+            case R.id.ib_login_weibo:
+                weiboLogin();
+                break;
+            case R.id.ib_login_qq:
+                qqLogin();
+                break;
+            case R.id.ib_login_wx:
+                weixinLogin();
+                break;
+            default:
                 break;
         }
     }
@@ -184,7 +223,82 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         }
     }
 
+    /**
+     * menu glide
+     *
+     * @param height   height
+     * @param progress progress
+     * @param time     time
+     */
+    private void glide(int height, float progress, int time) {
+        mLlLoginPull.animate()
+                .translationYBy(height - height * progress)
+                .translationY(height)
+                .setDuration(time)
+                .start();
 
+        mLlLoginLayer.animate()
+                .alphaBy(1 * progress)
+                .alpha(0)
+                .setDuration(time)
+                .setListener(new AnimatorListenerAdapter() {
+
+                    @Override
+                    public void onAnimationCancel(Animator animation) {
+                        if (animation instanceof ValueAnimator) {
+                            mLlLoginLayer.setTag(((ValueAnimator) animation).getAnimatedValue());
+                        }
+                    }
+
+                    @Override
+                    public void onAnimationEnd(Animator animation) {
+                        if (animation instanceof ValueAnimator) {
+                            mLlLoginLayer.setTag(((ValueAnimator) animation).getAnimatedValue());
+                        }
+                        mLlLoginLayer.setVisibility(View.GONE);
+                    }
+                })
+                .start();
+    }
+
+    /**
+     * menu up glide
+     *
+     * @param height   height
+     * @param progress progress
+     * @param time     time
+     */
+    private void upGlide(int height, float progress, int time) {
+        mLlLoginPull.animate()
+                .translationYBy(height * progress)
+                .translationY(0)
+                .setDuration(time)
+                .start();
+        mLlLoginLayer.animate()
+                .alphaBy(1 - progress)
+                .alpha(1)
+                .setDuration(time)
+                .setListener(new AnimatorListenerAdapter() {
+                    @Override
+                    public void onAnimationStart(Animator animation) {
+                        mLlLoginLayer.setVisibility(View.VISIBLE);
+                    }
+
+                    @Override
+                    public void onAnimationCancel(Animator animation) {
+                        if (animation instanceof ValueAnimator) {
+                            mLlLoginLayer.setTag(((ValueAnimator) animation).getAnimatedValue());
+                        }
+                    }
+
+                    @Override
+                    public void onAnimationEnd(Animator animation) {
+                        if (animation instanceof ValueAnimator) {
+                            mLlLoginLayer.setTag(((ValueAnimator) animation).getAnimatedValue()); }
+                    }
+                })
+                .start();
+    }
 
     //显示或隐藏logo
     @Override
