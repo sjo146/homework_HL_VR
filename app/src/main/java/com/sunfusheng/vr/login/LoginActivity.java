@@ -438,7 +438,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         user.setUId(j.getInt("uid"));
                         user.setUPersonal(j.getString("upersonal"));
                         user.setUUsername(j.getString("uusername"));
-                        Intent intent=new Intent(LoginActivity.this, StartActivity.class);
+                        Intent intent=new Intent(LoginActivity.this, MyInfoActivity.class);
                         startActivity(intent);
                     }
                     else
