@@ -6,10 +6,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import com.sunfusheng.vr.Load.LoadMyCommentActivity;
 import com.sunfusheng.vr.Load.LoadZanActivity;
 import com.sunfusheng.vr.R;
 import com.sunfusheng.vr.login.LoginActivity;
 import com.sunfusheng.vr.login.RegisterActivity;
+import com.sunfusheng.vr.transport.JsonUtil;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 public class MyInfoActivity extends AppCompatActivity implements View.OnClickListener{
     @Override
@@ -65,7 +69,7 @@ public class MyInfoActivity extends AppCompatActivity implements View.OnClickLis
                //我的赞
                 break;
             case R.id.commentDetail:
-                Intent intent2=new Intent(MyInfoActivity.this,AboutUsActivity.class);
+                Intent intent2=new Intent(MyInfoActivity.this, LoadMyCommentActivity.class);
                 startActivity(intent2);
                 //我的评论
                 break;
@@ -80,5 +84,46 @@ public class MyInfoActivity extends AppCompatActivity implements View.OnClickLis
             default:
                 break;
         }
+    }
+    public void seeComment()
+    {
+        String urlString=getResources().getString(R.string.connecturl)+"/getMyComment";
+        int uid=LoginActivity.user.getUId();
+        /*new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    JSONObject json=new JSONObject();
+                    json.put("uid",uid);
+                    String content=String.valueOf(json);
+                    String resultData = JsonUtil.getJsonString(urlString,content);
+                    JSONArray data = new JSONArray(resultData);
+                    int line=data.length();
+                    for (int i = 0; i < data.length() ; i++) {
+                        JSONObject j = data.getJSONObject(i);
+                        changeresult=Integer.valueOf(j.getString("registerResult"));
+                        System.out.println(changeresult);
+
+                        // imgMsgs.add(new ImgMsg(j.getInt("imgType"), j.getString("imgTitle"), j.getString("imgDesc"), Base64Object.base64ToBitmap(Base64Object.base64ToString(j.getString("imgAssetName")))));
+                    }
+                    if(changeresult==1)
+                    {
+                        Intent intent=new Intent(MyPwdActivity.this, LoginActivity.class);
+                        startActivity(intent);
+                    }
+                    else if(changeresult==0)
+                    {
+                        // 失败
+                    }
+
+
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }).start();*/
+
     }
 }

@@ -254,7 +254,7 @@
                     android:gravity="center"
                     android:text="@string/login_other_hint"
                     android:textColor="@color/login_other_color"
-                    android:textSize="14sp" />
+                    android:textSize="14sp"/>
 
             <LinearLayout
                     android:id="@+id/ll_login_options"
@@ -273,7 +273,7 @@
                         android:contentDescription="@null"
                         android:padding="8dp"
                         android:scaleType="centerInside"
-                        android:src="@mipmap/ic_login_3party_weibo" />
+                        android:src="@mipmap/ic_login_3party_weibo"/>
 
                 <ImageView
                         android:id="@+id/ib_login_wx"
@@ -284,7 +284,7 @@
                         android:contentDescription="@null"
                         android:padding="8dp"
                         android:scaleType="centerInside"
-                        android:src="@mipmap/ic_login_3party_wechat" />
+                        android:src="@mipmap/ic_login_3party_wechat"/>
 
                 <ImageView
                         android:id="@+id/ib_login_qq"
@@ -295,7 +295,7 @@
                         android:contentDescription="@null"
                         android:padding="8dp"
                         android:scaleType="centerInside"
-                        android:src="@mipmap/ic_login_3party_qq" />
+                        android:src="@mipmap/ic_login_3party_qq"/>
 
                 <ImageView
                         android:id="@+id/ib_login_csdn"
@@ -306,7 +306,7 @@
                         android:contentDescription="@null"
                         android:padding="8dp"
                         android:scaleType="centerInside"
-                        android:src="@mipmap/ic_login_3party_csdn" />
+                        android:src="@mipmap/ic_login_3party_csdn"/>
             </LinearLayout>
         </LinearLayout>
 

@@ -14,6 +14,7 @@ import com.google.vr.sdk.widgets.pano.VrPanoramaView;
 
 import com.library.tabstrip.PagerSlidingTabStrip;
 import com.sunfusheng.vr.Load.StartActivity;
+import com.sunfusheng.vr.MyInfo.MyInfoActivity;
 import com.sunfusheng.vr.about.AboutActivity;
 import com.sunfusheng.vr.adapter.RecycleAdapter;
 import com.sunfusheng.vr.model.ImgMsg;
@@ -68,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void initListener() {
         ivMine.setOnClickListener(v -> {
-            startActivity(new Intent(this, AboutActivity.class));
+            startActivity(new Intent(this, MyInfoActivity.class));
         });
 
         recycleAdapter.setOnItemClickListener(new RecycleAdapter.OnItemClickListener() {
