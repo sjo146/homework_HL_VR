@@ -61,13 +61,15 @@
     <android.support.v7.widget.RecyclerView
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
-            android:layout_height="370dp"
+            android:layout_height="400dp"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
     </android.support.v7.widget.RecyclerView>
     <Button
-            android:text="全部"
-            android:layout_width="wrap_content"
+            android:text="看看别的"
+            android:layout_gravity="center"
+            android:layout_width="200dp"
+            android:textSize="@dimen/f4"
+            android:background="@drawable/bg_login_submit"
             android:layout_height="wrap_content" android:id="@+id/button2"/>
-
 
 </LinearLayout>
