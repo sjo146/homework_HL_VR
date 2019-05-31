@@ -12,6 +12,8 @@
             android:label="@string/app_name"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
+        <activity android:name=".MyInfo.ChangeMineActivity">
+        </activity>
         <activity android:name=".Comment.myCommentActivity">
         </activity>
         <activity android:name=".Comment.MyCommentLoading">

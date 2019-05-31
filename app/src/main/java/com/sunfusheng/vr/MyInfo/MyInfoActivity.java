@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import com.sunfusheng.vr.Load.LoadMyCommentActivity;
 import com.sunfusheng.vr.Load.LoadZanActivity;
@@ -30,16 +31,23 @@ public class MyInfoActivity extends AppCompatActivity implements View.OnClickLis
         ImageButton myComment;
         ImageButton myLike;
         ImageButton aboutUs;
+        ImageButton logout;
+        ImageView logoutIcon;
         TextView top;
         ImageButton mIbNavigationBack;
+        ImageButton changePersonal;
 
 
         username=(TextView)findViewById(R.id.username);
         personal=(TextView)findViewById(R.id.personal);
         myPwd=(ImageButton)findViewById(R.id.changeKey);
         myComment=(ImageButton)findViewById(R.id.commentDetail);
+        changePersonal=(ImageButton)findViewById(R.id.changePersonal);
         myLike=(ImageButton)findViewById(R.id.likeDetail);
         aboutUs=(ImageButton)findViewById(R.id.aboutDetail);
+        logout=(ImageButton)findViewById(R.id.logoutnow);
+        logoutIcon=(ImageView)findViewById(R.id.logout);
+        logoutIcon.setVisibility(4);
         mIbNavigationBack = findViewById(R.id.ib_navigation_back);
         top=findViewById(R.id.tv_navigation_label);
         top.setText("个人中心");
@@ -51,6 +59,8 @@ public class MyInfoActivity extends AppCompatActivity implements View.OnClickLis
         myLike.setOnClickListener(this);
         myPwd.setOnClickListener(this);
         aboutUs.setOnClickListener(this);
+        changePersonal.setOnClickListener(this);
+        logout.setOnClickListener(this);
         mIbNavigationBack.setOnClickListener(this);
 
 
@@ -63,6 +73,11 @@ public class MyInfoActivity extends AppCompatActivity implements View.OnClickLis
                 Intent intent=new Intent(MyInfoActivity.this,AboutUsActivity.class);
                 startActivity(intent);
                 break;
+            case R.id.logoutnow:
+                //关于我们
+                LoginActivity.user=null;
+                startActivity(new Intent(MyInfoActivity.this,LoginActivity.class));
+                break;
             case R.id.likeDetail:
                 Intent intent1=new Intent(MyInfoActivity.this, LoadZanActivity.class);
                 startActivity(intent1);
@@ -71,6 +86,11 @@ public class MyInfoActivity extends AppCompatActivity implements View.OnClickLis
             case R.id.commentDetail:
                 Intent intent2=new Intent(MyInfoActivity.this, LoadMyCommentActivity.class);
                 startActivity(intent2);
+                //我的评论
+                break;
+            case R.id.changePersonal:
+                Intent intent4=new Intent(MyInfoActivity.this, ChangeMineActivity.class);
+                startActivity(intent4);
                 //我的评论
                 break;
             case R.id.changeKey:

@@ -2,6 +2,8 @@ package com.sunfusheng.vr.MyInfo;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -10,6 +12,7 @@ import android.view.View;
 import android.widget.*;
 import com.sunfusheng.vr.R;
 import com.sunfusheng.vr.login.LoginActivity;
+import com.sunfusheng.vr.login.RegisterActivity;
 import com.sunfusheng.vr.transport.JsonUtil;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -26,11 +29,21 @@ public class MyPwdActivity extends AppCompatActivity implements View.OnClickList
     private ImageView newPwdDel;
     private ImageView againPwdDel;
     private ImageButton mIbNavigationBack;
-    private LinearLayout llOldPwd;
-    private LinearLayout llNewPwd;
-    private LinearLayout llAgainPwd;
-
     private TextView top;
+
+    Handler handler = new Handler() {
+        public void handleMessage(android.os.Message msg) {
+            if (msg.arg1 == 1) {
+                Toast.makeText(MyPwdActivity.this, "两次输入不同", Toast.LENGTH_LONG).show();
+            }
+            else if(msg.arg1 == 2)
+            {
+                Toast.makeText(MyPwdActivity.this, "修改失败失败", Toast.LENGTH_LONG).show();
+            }
+        }
+
+        ;
+    };
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,9 +63,6 @@ public class MyPwdActivity extends AppCompatActivity implements View.OnClickList
         oldPwdDel= findViewById(R.id.iv_old_pwd_del);
         newPwdDel= findViewById(R.id.iv_new_pwd_del);
         againPwdDel= findViewById(R.id.iv_again_pwd_del);
-        llOldPwd= findViewById(R.id.old_pwd);
-        llNewPwd= findViewById(R.id.new_pwd);
-        llAgainPwd= findViewById(R.id.again_pwd);
 
 
 
@@ -199,7 +209,9 @@ public class MyPwdActivity extends AppCompatActivity implements View.OnClickList
         System.out.println(againPwd);
         if(!newPwd.equals(againPwd))
         {
-            //显示两次密码不同
+            Message message = handler.obtainMessage();
+            message.arg1 = 1;
+            handler.sendMessage(message);
         }
         new Thread(new Runnable() {
             @Override
@@ -227,7 +239,9 @@ public class MyPwdActivity extends AppCompatActivity implements View.OnClickList
                     }
                     else if(changeresult==0)
                     {
-                        // 失败
+                        Message message = handler.obtainMessage();
+                        message.arg1 = 2;
+                        handler.sendMessage(message);
                     }
 
 

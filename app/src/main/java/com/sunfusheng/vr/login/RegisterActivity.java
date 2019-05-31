@@ -2,6 +2,8 @@ package com.sunfusheng.vr.login;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -25,6 +27,20 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     private ImageButton mIbNavigationBack;
     private LinearLayout mLlRegisterUsername;
     private LinearLayout mLlRegisterPwd;
+
+    Handler handler = new Handler() {
+        public void handleMessage(android.os.Message msg) {
+            if (msg.arg1 == 1) {
+                Toast.makeText(RegisterActivity.this, "用户名已存在", Toast.LENGTH_LONG).show();
+            }
+            else if(msg.arg1 == 2)
+            {
+                Toast.makeText(RegisterActivity.this, "注册失败", Toast.LENGTH_LONG).show();
+            }
+        }
+
+        ;
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -172,11 +188,15 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                     }
                     else if(registerresult==1)
                     {
-                        // 用户名已存在
+                        Message message = handler.obtainMessage();
+                        message.arg1 = 1;
+                        handler.sendMessage(message);
                     }
                     else
                     {
-                        //失败
+                        Message message = handler.obtainMessage();
+                        message.arg1 = 2;
+                        handler.sendMessage(message);
                     }
 
 

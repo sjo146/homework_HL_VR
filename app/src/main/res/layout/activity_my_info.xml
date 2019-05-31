@@ -35,33 +35,19 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:id="@+id/personal"/>
+            <ImageButton
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:background="#00000000"
+                    android:layout_gravity="center"
+                    android:scaleType="centerInside"
+                    app:srcCompat="@mipmap/write"
+                    android:id="@+id/changePersonal"/>
             <Space
                     android:layout_width="match_parent"
                     android:layout_height="60dp"/>
         </LinearLayout>
 
-       <!-- <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="50dp">
-            <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp" app:srcCompat="@mipmap/user"
-                    android:id="@+id/imageView3"
-                    android:layout_weight="1"/>
-            <TextView
-                    android:text="用户名"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" android:id="@+id/usernameTip" android:layout_weight="1"/>
-            <TextView
-                    android:text="放用户名"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" android:id="@+id/username" android:layout_weight="1"/>
-            <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp" app:srcCompat="@mipmap/right" android:id="@+id/imageView4"
-                    android:layout_weight="1"/>
-        </LinearLayout>-->
         <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
@@ -169,7 +155,32 @@
                     android:scaleType="centerInside"
                     android:layout_weight="1"/>
         </LinearLayout>
-
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="50dp">
+            <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp" app:srcCompat="@mipmap/logout"
+                    android:id="@+id/logout"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"/>
+            <!--android:scaleType="fitStart"-->
+            <TextView
+                    android:text="退出登录"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:id="@+id/logoutTip" android:layout_weight="1"/>
+            <ImageButton
+                    android:layout_width="24dp"
+                    android:layout_height="24dp" app:srcCompat="@mipmap/logout"
+                    android:layout_gravity="center"
+                    android:id="@+id/logoutnow"
+                    android:background="#00000000"
+                    android:scaleType="centerInside"
+                    android:layout_weight="1"/>
+        </LinearLayout>
 
     </LinearLayout>
 

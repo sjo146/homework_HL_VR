@@ -7,4 +7,24 @@
         android:layout_height="match_parent"
         tools:context=".MyInfo.AboutUsActivity">
 
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/commom_top">
+        <include
+                android:id="@+id/ly_register_bar"
+                layout="@layout/activity_main_login_navigation_bar" />
+        <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" android:gravity="center">
+            <TextView
+                    android:text="小组作业,黄丹，李璐瑶"
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:gravity="center"
+                    android:id="@+id/textView3"/>
+        </LinearLayout>
+    </LinearLayout>
 </android.support.constraint.ConstraintLayout>

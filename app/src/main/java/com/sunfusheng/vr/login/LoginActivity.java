@@ -6,10 +6,13 @@ import android.animation.ValueAnimator;
 import android.content.Intent;
 import android.graphics.Rect;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
@@ -21,6 +24,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+import com.sunfusheng.vr.Load.LoadMyCommentActivity;
+import com.sunfusheng.vr.MyInfo.MyCommentActivity;
 import com.sunfusheng.vr.MyInfo.MyInfoActivity;
 import com.sunfusheng.vr.R;
 import com.sunfusheng.vr.Load.StartActivity;
@@ -47,14 +52,28 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private LinearLayout mLayBackBar;
     private TextView mTvLoginForgetPwd;
     private Button mBtLoginRegister;
+    boolean flag=false;
 
     //全局Toast
-    private Toast mToast;
-
     private int mLogoHeight;
     private int mLogoWidth;
 
     public static User user;//存下用户名和密码全局调用
+
+
+    Handler handler = new Handler() {
+        public void handleMessage(android.os.Message msg) {
+            if (msg.arg1 == 1) {
+                Toast.makeText(LoginActivity.this, "用户名或密码错误", Toast.LENGTH_LONG).show();
+            }
+            else if (msg.arg1 == 2) {
+                Toast.makeText(LoginActivity.this, "请勿重复登录", Toast.LENGTH_LONG).show();
+            }
+        }
+
+        ;
+    };
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -392,9 +411,16 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         String urlString=getResources().getString(R.string.connecturl);
         String username=mEtLoginUsername.getText().toString();
         String pwd=mEtLoginPwd.getText().toString();
+        if(LoginActivity.user!=null)
+        {
+            Message message = handler.obtainMessage();
+            message.arg1 = 2;
+            handler.sendMessage(message);
+        }
         user=new User();
         user.setUUsername(username);
         user.setUPassword(pwd);
+
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -417,7 +443,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     }
                     else
                     {
-
+                        Message message = handler.obtainMessage();
+                        message.arg1 = 1;
+                        handler.sendMessage(message);
                     }
 
 
@@ -453,13 +481,4 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
      *
      * @param msg 提示信息内容
      */
-    private void showToast(int msg) {
-        if (null != mToast) {
-            mToast.setText(msg);
-        } else {
-            mToast = Toast.makeText(LoginActivity.this, msg, Toast.LENGTH_SHORT);
-        }
-
-        mToast.show();
-    }
 }
