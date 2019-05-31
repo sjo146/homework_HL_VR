@@ -19,9 +19,6 @@
             <include
                     android:id="@+id/ly_register_bar"
                     layout="@layout/activity_main_login_navigation_bar" />
-            <Space
-                    android:layout_width="match_parent"
-                    android:layout_height="60dp"/>
             <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" app:srcCompat="@drawable/earth" android:id="@+id/imageView2"/>
@@ -30,13 +27,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:id="@+id/username"/>
+                    android:id="@+id/myusername"/>
             <TextView
                     android:text="个性签名"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:id="@+id/personal"/>
+                    android:id="@+id/mypersonal"/>
             <Space
                     android:layout_width="match_parent"
                     android:layout_height="60dp"/>

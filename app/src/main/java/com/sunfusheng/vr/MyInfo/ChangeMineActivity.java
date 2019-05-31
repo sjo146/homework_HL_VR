@@ -23,6 +23,8 @@ public class ChangeMineActivity extends AppCompatActivity implements View.OnClic
     private Button changepersonalBtn;
     private ImageView usernameDel;
     private ImageView personalDel;
+    private TextView now_username;
+    private TextView now_personal;
     private ImageButton mIbNavigationBack;
     private TextView top;
     @Override
@@ -41,6 +43,10 @@ public class ChangeMineActivity extends AppCompatActivity implements View.OnClic
         changepersonalBtn = findViewById(R.id.changePersonalSubmit);
         personalDel = findViewById(R.id.iv_personal_del);
         usernameDel = findViewById(R.id.iv_username_del);
+        now_personal=findViewById(R.id.mypersonal);
+        now_username=findViewById(R.id.myusername);
+        now_personal.setText(LoginActivity.user.getUPersonal());
+        now_username.setText(LoginActivity.user.getUUsername());
         etpersonal.setText(LoginActivity.user.getUPersonal());
         etusername.setText(LoginActivity.user.getUUsername());
 

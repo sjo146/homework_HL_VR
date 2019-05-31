@@ -28,6 +28,8 @@ public class MyPwdActivity extends AppCompatActivity implements View.OnClickList
     private ImageView oldPwdDel;
     private ImageView newPwdDel;
     private ImageView againPwdDel;
+    private TextView now_username;
+    private TextView now_personal;
     private ImageButton mIbNavigationBack;
     private TextView top;
 
@@ -63,6 +65,11 @@ public class MyPwdActivity extends AppCompatActivity implements View.OnClickList
         oldPwdDel= findViewById(R.id.iv_old_pwd_del);
         newPwdDel= findViewById(R.id.iv_new_pwd_del);
         againPwdDel= findViewById(R.id.iv_again_pwd_del);
+
+        now_personal=findViewById(R.id.mypersonal);
+        now_username=findViewById(R.id.myusername);
+        now_personal.setText(LoginActivity.user.getUPersonal());
+        now_username.setText(LoginActivity.user.getUUsername());
 
 
 
