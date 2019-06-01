@@ -9,8 +9,11 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import com.sunfusheng.vr.Load.StartActivity;
 import com.sunfusheng.vr.R;
+import com.sunfusheng.vr.login.LoginActivity;
 
 public class NoZanActivity extends AppCompatActivity {
+    private TextView username;
+    private TextView personal;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,6 +23,10 @@ public class NoZanActivity extends AppCompatActivity {
         ImageButton mIbNavigationBack;
         Button button;
         mIbNavigationBack = findViewById(R.id.ib_navigation_back);
+        username=findViewById(R.id.username);
+        personal=findViewById(R.id.personal);
+        username.setText(LoginActivity.user.getUUsername());
+        personal.setText(LoginActivity.user.getUPersonal());
         top=findViewById(R.id.tv_navigation_label);
         button=findViewById(R.id.button);
         top.setText("我的点赞");

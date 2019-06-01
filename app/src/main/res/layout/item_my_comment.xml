@@ -47,7 +47,8 @@
                 android:layout_toLeftOf="@+id/tv_comment"
                 android:clickable="true"
                 android:text="@string/mycomment"
-                android:layout_width="60dp"
+                android:layout_width="wrap_content"
+                android:layout_marginRight="20dp"
                 android:layout_height="wrap_content" android:id="@+id/tv_mycomment"/>
         <TextView
                 android:layout_below="@+id/tv_desc"

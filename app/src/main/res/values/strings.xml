@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">VR_Test</string>
+    <string name="app_name">看世界</string>
     <string name="connecturl">http://119.23.224.10:8090/</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -35,5 +35,6 @@
     <string name="message_username_null">用户名未填写！！！</string>
     <string name="comment">查看评论</string>
     <string name="mycomment">我的评论</string>
+    <string name="myzan">我的点赞</string>
     <string name="title_activity_comment_loading">CommentLoading</string>
 </resources>

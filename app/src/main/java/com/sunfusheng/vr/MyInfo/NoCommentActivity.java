@@ -9,8 +9,11 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import com.sunfusheng.vr.Load.StartActivity;
 import com.sunfusheng.vr.R;
+import com.sunfusheng.vr.login.LoginActivity;
 
 public class NoCommentActivity extends AppCompatActivity {
+    private TextView username;
+    private TextView personal;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +25,10 @@ public class NoCommentActivity extends AppCompatActivity {
         mIbNavigationBack = findViewById(R.id.ib_navigation_back);
         top=findViewById(R.id.tv_navigation_label);
         button=findViewById(R.id.button);
+        username=findViewById(R.id.username);
+        personal=findViewById(R.id.personal);
+        username.setText(LoginActivity.user.getUUsername());
+        personal.setText(LoginActivity.user.getUPersonal());
         top.setText("我的评论");
         mIbNavigationBack.setOnClickListener(new View.OnClickListener() {
             @Override

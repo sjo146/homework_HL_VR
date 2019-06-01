@@ -42,16 +42,20 @@
         <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" android:gravity="center">
+                android:layout_height="400dp" android:gravity="center">
             <TextView
-                    android:text="你还没有点赞哦，快去看看吧"
+                    android:text="你还没有评论哦，快去看看吧"
                     android:gravity="center"
-                    android:layout_width="200dp"
-                    android:layout_height="wrap_content" android:id="@+id/textView2"/>
-            <Button
-                    android:text="去看看"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" android:id="@+id/button"/>
+                    android:textSize="@dimen/f4"
+                    android:layout_height="90dp" android:id="@+id/textView2"/>
         </LinearLayout>
+        <Button
+                android:text="去看看"
+                android:layout_width="200dp"
+                android:background="@drawable/bg_login_submit"
+                android:textColor="@color/white"
+                android:layout_gravity="center"
+                android:layout_height="wrap_content" android:id="@+id/button"/>
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

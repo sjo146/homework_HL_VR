@@ -9,6 +9,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.google.vr.sdk.widgets.pano.VrPanoramaView;
@@ -33,6 +34,8 @@ public class MyZanActivity extends AppCompatActivity {
     private MyZanAdapter tAdapter;
     private ViewPager pager;
     private PagerSlidingTabStrip tabs;
+    private ImageButton back;
+
     private Button seeAll;
 
 
@@ -54,6 +57,7 @@ public class MyZanActivity extends AppCompatActivity {
         vrPanoramaView.setInfoButtonEnabled(false);
         vrPanoramaView.setStereoModeButtonEnabled(false);
         seeAll=findViewById(R.id.button2);
+        back=findViewById(R.id.btn_back);
         currPosition = new Random().nextInt(LoadZanActivity.imgMsgs.size());
         ImgMsg imgMsg = LoadZanActivity.imgMsgs.get(currPosition);
         loadImgMsg(imgMsg);
@@ -84,6 +88,9 @@ public class MyZanActivity extends AppCompatActivity {
             startActivity(new Intent(this, MyInfoActivity.class));
         });
 
+        back.setOnClickListener(v -> {
+            startActivity(new Intent(this, MyInfoActivity.class));
+        });
         tAdapter.setOnItemClickListener(new MyZanAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
